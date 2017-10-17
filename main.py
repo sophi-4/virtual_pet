@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, jsonify
 from pymongo import MongoClient
 import datetime
 
+LOCAL = False
+
 from credentials import db_access
 
 app = Flask(__name__)
@@ -23,5 +25,5 @@ for x in db.my_posts.find():
 def page():
     return render_template('index.html')
 
-if __name__ == "__main__":
+if LOCAL and __name__ == "__main__":
     app.run(debug=True)
