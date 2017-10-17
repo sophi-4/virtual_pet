@@ -1,0 +1,17 @@
+<HTML>
+  <HEAD>
+  </HEAD>
+
+  <BODY>
+    <H1>Hello Template World</H1>
+
+    <UL>
+      {% for x in range(1, 10) %}
+         {% for y in range(1, 10) %}
+            <LI STYLE="color: {{ '#FF0088' if (x == y) else '#FF6600' }}"> {{ x }} * {{ y }} = {{ x * y }} </LI>
+         {% endfor %}
+      {% endfor %}
+    </UL>
+
+  </BODY>
+</HTML>
