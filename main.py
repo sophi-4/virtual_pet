@@ -3,6 +3,8 @@ import datetime
 
 LOCAL = False
 
+app = Flask(__name__)
+
 @app.route("/")
 def page():
     return "Hello World"
