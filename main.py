@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, send_from_directory
 from pymongo import MongoClient
 import datetime
 import os
@@ -15,12 +15,13 @@ print(uri)
 client = MongoClient(uri)
 db = client[db_name]
 
-for x in db.my_posts.find():
-    print(x)
-
 ON_HEROKU = "ON_HEROKU" in os.environ
 
 app = Flask(__name__)
+
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('js', path)
 
 @app.route("/")
 def page():
