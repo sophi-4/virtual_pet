@@ -2,8 +2,6 @@ from flask import Flask, request, render_template, jsonify
 import datetime
 import os
 
-LOCAL = True
-
 ON_HEROKU = "ON_HEROKU" in os.environ
 
 app = Flask(__name__)
