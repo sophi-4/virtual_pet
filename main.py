@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 import datetime
 
-LOCAL = False
+LOCAL = True
 
 app = Flask(__name__)
 
