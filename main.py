@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, jsonify
 import datetime
+import os
 
-LOCAL = True
+ON_HEROKU = "ON_HEROKU" in os.environ
 
 app = Flask(__name__)
 
@@ -9,5 +10,5 @@ app = Flask(__name__)
 def page():
     return render_template('index.html')
 
-if LOCAL and __name__ == "__main__":
+if (not ON_HEROKU) and __name__ == "__main__":
     app.run(debug=True)
