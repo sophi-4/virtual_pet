@@ -23,6 +23,14 @@ app = Flask(__name__)
 def send_js(path):
     return send_from_directory('js', path)
 
+@app.route('/exchange', methods=['POST'])
+def exchange():
+    json = request.get_json()
+    if json['data'] == 37:
+        return jsonify({ 'x' : 56, 'y' : [-200, 55], 'thirty_seven': 'YES'  })
+    else:
+        return jsonify({ 'x' : 56, 'y' : [-200, 55], 'z' : json['data']  })
+
 @app.route("/")
 def page():
     return render_template('index.html', data=db.my_posts.find())
