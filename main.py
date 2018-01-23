@@ -31,6 +31,18 @@ def exchange():
     else:
         return jsonify({ 'x' : 56, 'y' : [-200, 55], 'z' : json['data']  })
 
+@app.route('/add_data', methods=['POST'])
+def add_data():
+    json = request.get_json()
+    instruction = json['instruction']
+    mood = json['mood']
+
+    id = db.my_posts.insert_one({'instruction': instruction,
+                                 'mood': mood,
+                                 'timestamp': datetime.utcnow()})
+
+    return jsonify({'id' : id})
+
 @app.route("/")
 def page():
     return render_template('index.html', data=db.my_posts.find())

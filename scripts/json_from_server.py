@@ -1,7 +1,11 @@
 import requests
 
 # r = requests.post("http://localhost:5000/exchange", json={'data': 137})
-r = requests.post("https://ravevirtualpet.herokuapp.com/exchange", json={'data': 137})
+#r = requests.post("https://ravevirtualpet.herokuapp.com/exchange", json={'data': 137})
+
+r = requests.post("https://ravevirtualpet.herokuapp.com/add_data",
+                  json={'instruction': "FORWARD",
+                        'mood': "HAPPY"})
 
 if r.status_code == requests.codes.ok:
     data = r.json()
