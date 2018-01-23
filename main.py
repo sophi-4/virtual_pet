@@ -39,9 +39,10 @@ def add_data():
 
     id = db.my_posts.insert_one({'instruction': instruction,
                                  'mood': mood,
-                                 'timestamp': datetime.utcnow()})
+                                 'timestamp': datetime.datetime.utcnow()})
 
-    return jsonify({'id' : id})
+    print(id)
+    return jsonify({'status' : 'DONE'})
 
 @app.route("/")
 def page():
