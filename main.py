@@ -3,19 +3,21 @@ from pymongo import MongoClient
 import datetime
 import os
 
-from credentials import db_access
+ON_HEROKU = "ON_HEROKU" in os.environ
 
-host='ds033390.mlab.com:33390'
-db_name = 'test1'
-
-uri = "mongodb://%s:%s@%s/%s" % (db_access.user, db_access.password, host, db_name)
+if ON_HEROKU:
+    from credentials import db_hosted
+    db = db_hosted
+    uri = "mongodb://%s:%s@%s/%s" % (db.user, db.password, db.host, db.db_name)
+else:
+    from credentials import db_local
+    db = db_local
+    uri = "mongodb://%s/%s" % (db.host, db.db_name)
 
 print(uri)
 
 client = MongoClient(uri)
-db = client[db_name]
-
-ON_HEROKU = "ON_HEROKU" in os.environ
+db = client[db.db_name]
 
 app = Flask(__name__)
 
