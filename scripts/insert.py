@@ -1,7 +1,3 @@
-# In mongo:
-# use mytable
-# db.createUser({user:"test", pwd:"test", roles:["readWrite"]})
-
 from pymongo import MongoClient
 import datetime
 import random

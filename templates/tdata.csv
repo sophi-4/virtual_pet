@@ -1,0 +1,4 @@
+day,hour,value
+{% for d, h, v in data -%}
+{{ d }}, {{ h }}, {{ v }}
+{% endfor %}

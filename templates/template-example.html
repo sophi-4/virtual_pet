@@ -1,0 +1,20 @@
+<HTML>
+  <HEAD>
+    <SCRIPT SRC="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.3/svg.js"></SCRIPT>
+    <SCRIPT SRC="js/my-circle-draw.js" TYPE="text/javascript"></SCRIPT>
+  </HEAD>
+
+  <BODY ONLOAD="go()">
+    <DIV ID="drawing"></DIV>
+
+    <H1>Hello Template World</H1>
+
+    <UL>
+      {% for x in range(1, 10) %}
+         {% for y in range(1, 10) %}
+            <LI STYLE="color: {{ '#FF0088' if (x == y) else '#FF6600' }}"> {{ x }} * {{ y }} = {{ x * y }} </LI>
+         {% endfor %}
+      {% endfor %}
+    </UL>
+  </BODY>
+</HTML>
