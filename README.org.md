@@ -23,9 +23,9 @@ Type =^C= to shut down. Database files are stored in =/usr/local/var/mongodb=.
 
 *** Create a test database
 
-Run =mongo=, then:
+Download Robo 3T: https://robomongo.org/download - this can be used for queries in the native syntax, but also just for examining data interactively.
 
-
+Run =scripts/insert.py=: this is a simple Python script for inserting some test records and printing them out.
 
 *** Set up python virtual environment
 
