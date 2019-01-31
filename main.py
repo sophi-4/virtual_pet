@@ -67,6 +67,26 @@ def tdpage_hm():
     data = reduce(concat, [[[h, m, random.randint(0, 100)] for m in range(60)] for h in range(24)])
     return render_template('tdata_hm.csv', data=data)
 
+@app.route("/tdata_hm_live")
+def tdpage_hm_live():
+    collection = db.items
+    results = collection.aggregate(
+        [
+            { '$group' : { '_id' : { 'hour' : { "$hour" : "$date" },
+                                     'minute' : { "$minute" : "$date" }},
+                           'count' : { '$sum' : 1 }}
+            }
+        ]
+    )
+
+    for x in results:
+        print(x)
+
+    data = reduce(concat, [[[h, m, random.randint(0, 100)] for m in range(60)] for h in range(24)])
+    return render_template('tdata_hm.csv', data=data)
+
+
+
 # Data transfer: bidirectional JSON endpoints:
 
 @app.route('/exchange', methods=['POST'])
