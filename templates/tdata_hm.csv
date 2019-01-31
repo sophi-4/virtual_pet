@@ -1,0 +1,4 @@
+hour,minute,value
+{% for h, m, v in data -%}
+{{ h }}, {{ m }}, {{ v }}
+{% endfor %}

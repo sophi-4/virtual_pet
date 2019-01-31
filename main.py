@@ -53,10 +53,19 @@ def tpage():
 def hpage():
     return render_template('heatmap.html')
 
+@app.route("/heatmap_hm")
+def hpage_hm():
+    return render_template('heatmap_hm.html')
+
 @app.route("/tdata")
 def tdpage():
     data = reduce(concat, [[[d, h, random.randint(0, 100)] for h in range(1, 25)] for d in range(1, 8)])
     return render_template('tdata.csv', data=data)
+
+@app.route("/tdata_hm")
+def tdpage_hm():
+    data = reduce(concat, [[[h, m, random.randint(0, 100)] for m in range(60)] for h in range(24)])
+    return render_template('tdata_hm.csv', data=data)
 
 # Data transfer: bidirectional JSON endpoints:
 
