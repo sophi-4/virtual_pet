@@ -31,6 +31,7 @@ Packages needed:
 
 - =Flask=
 - =pymongo=
+- =requests= (for the uploader script)
 
 *** Try a test script
 

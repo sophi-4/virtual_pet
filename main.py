@@ -97,23 +97,14 @@ def tdpage_hm_live():
 
 # Data transfer: bidirectional JSON endpoints:
 
-@app.route('/exchange', methods=['POST'])
-def exchange():
-    json = request.get_json()
-    if json['data'] == 37:
-        return jsonify({ 'x' : 56, 'y' : [-200, 55], 'thirty_seven': 'YES'  })
-    else:
-        return jsonify({ 'x' : 56, 'y' : [-200, 55], 'z' : json['data']  })
-
 @app.route('/add_data', methods=['POST'])
 def add_data():
     json = request.get_json()
-    instruction = json['instruction']
-    mood = json['mood']
+    t = float(json['time'])
+    d = datetime.datetime.fromtimestamp(t)
 
-    id = db.my_posts.insert_one({'instruction': instruction,
-                                 'mood': mood,
-                                 'timestamp': datetime.datetime.utcnow()})
+    id = db.items.insert_one({'date': d,
+                              'count': float(json['value'])})
 
     print(id)
     return jsonify({'status' : 'DONE'})
