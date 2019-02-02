@@ -59,12 +59,14 @@ def hpage_hm():
 
 @app.route("/tdata")
 def tdpage():
-    data = reduce(concat, [[[d, h, random.randint(0, 100)] for h in range(1, 25)] for d in range(1, 8)])
+    data = reduce(concat, [[[d, h, random.randint(0, 100)] for h in range(1, 25)]
+                           for d in range(1, 8)])
     return render_template('tdata.csv', data=data)
 
 @app.route("/tdata_hm")
 def tdpage_hm():
-    data = reduce(concat, [[[h, m, random.randint(0, 100)] for m in range(60)] for h in range(24)])
+    data = reduce(concat, [[[h, m, random.randint(0, 100)] for m in range(60)]
+                           for h in range(24)])
     return render_template('tdata_hm.csv', data=data)
 
 @app.route("/tdata_hm_live")
@@ -79,13 +81,19 @@ def tdpage_hm_live():
         ]
     )
 
+    dataset = [[0 for m in range(60)] for h in range(24)]
+
     for x in results:
-        print(x)
+        id = x['_id']
+        h = id['hour']
+        m = id['minute']
+        v = x['count']
+        dataset[h][m] = v
 
-    data = reduce(concat, [[[h, m, random.randint(0, 100)] for m in range(60)] for h in range(24)])
+    data = reduce(concat, [[[h, m, dataset[h][m]] for m in range(60)]
+                           for h in range(24)])
+
     return render_template('tdata_hm.csv', data=data)
-
-
 
 # Data transfer: bidirectional JSON endpoints:
 

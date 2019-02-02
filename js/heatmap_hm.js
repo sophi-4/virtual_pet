@@ -11,7 +11,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
     colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
     days = range(0, 24),
     times = range(0, 60);
-    datasets = ["/tdata_hm"];
+    datasets = ["/tdata_hm_live"];
 
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)

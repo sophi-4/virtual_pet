@@ -8,7 +8,7 @@ client = MongoClient()
 db = client["dated_items"]
 collection = db.items
 
-if False:
+if True:
     d = datetime.datetime.utcnow()
 
     for i in range(100):
@@ -18,14 +18,29 @@ if False:
 
 # Adapted from: https://docs.mongodb.com/manual/reference/operator/aggregation/group/
 
-results = collection.aggregate(
-    [
-        { '$group' : { '_id' : { 'hour' : { "$hour" : "$date" },
-                                 'minute' : { "$minute" : "$date" }},
-                       'count' : { '$sum' : 1 }}
-        }
-    ]
-)
+def aggregation():
+    return collection.aggregate(
+        [
+            { '$group' : { '_id' : { 'hour' : { "$hour" : "$date" },
+                                     'minute' : { "$minute" : "$date" }},
+                           'count' : { '$sum' : 1 }}
+            }
+        ]
+    )
 
-for x in results:
+print("Aggregration:")
+
+for x in aggregation():
     print(x)
+
+
+print("Into arrays:")
+
+dataset = [[0 for m in range(60)] for h in range(24)]
+
+for x in aggregation():
+    id = x['_id']
+    h = id['hour']
+    m = id['minute']
+    v = x['count']
+    dataset[h][m] = v

@@ -1,4 +1,2 @@
 host='localhost'
-db_name = 'test'
-user = 'test'
-password = 'test'
+db_name = 'dated_items'
